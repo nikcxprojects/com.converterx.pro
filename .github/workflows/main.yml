@@ -7,11 +7,11 @@ env:
   UNITY_EMAIL: "unitydatastorage@gmail.com"
   UNITY_PASSWORD: "qwerty12345Q"
   
-  APP_NAME: "com.tapliga.liga.sport.time"
+  APP_NAME: "com.converterx.pro"
   
-  AndroidKeystorePass: "qwerty12345Q"
-  AndroidKeyaliasPass: "qwerty12345Q"
-  AndroidKeyaliasName: "qwerty12345q"
+  AndroidKeystorePass: "gkm3MGMAmdm3!3sdf"
+  AndroidKeyaliasPass: "gkm3MGMAmdm3!3sdf"
+  AndroidKeyaliasName: "gunkeb"
   
   ChatID_APK: "-1001730907007"
   ChatID_AAB: "-1001730907007"
