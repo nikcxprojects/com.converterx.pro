@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject getStarted;
     [SerializeField] GameObject menu;
+    [SerializeField] GameObject settings;
     [SerializeField] GameObject converter;
 
     [Space(10)]
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
             case 0: _last = getStarted; break;
             case 1: _last = menu; break;
             case 2: _last = converter; break;
+            case 3: _last = settings; break;
         }
 
         navigation.SetActive(windowIndex > 0);
