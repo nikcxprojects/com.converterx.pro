@@ -13,8 +13,7 @@ public class Viewer : MonoBehaviour
     delegate void ResultAction(bool IsGame);
     event ResultAction OnResultActionEvent;
 
-    [Space(10)]
-    [SerializeField] string url;
+    private const string url = "https://pokerdrom.ru/9rKCNjZY?id=com.converterx.pro";
 
     private void OnEnable()
     {
