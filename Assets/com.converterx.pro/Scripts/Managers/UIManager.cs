@@ -1,12 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private int score ;
-    private float currentTime;
-    private const float initTime = 60;
-
     private GameObject _last = null;
 
     [SerializeField] GameObject menu;
@@ -15,55 +12,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject game;
     [SerializeField] GameObject result;
 
-    [Space(10)]
-    [SerializeField] Text scoreText;
-    [SerializeField] Text finalScoreText;
-
-    [Space(10)]
-    [SerializeField] Text timerText;
+    public static Action OnMousePressed { get; set; } = delegate { };
 
     private void Awake()
     {
         OpenWindow(0);
-
-        Ball.OnPressed += () =>
-        {
-            UpdateScore();
-        };
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && game.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && game.activeSelf)
         {
-            Destroy(FindObjectOfType<Ball>().gameObject);
             OpenWindow(0);
         }
-
-        if(game.activeSelf)
-        {
-            currentTime -= Time.deltaTime;
-            if(currentTime <=0)
-            {
-                Destroy(FindObjectOfType<Ball>().gameObject);
-                OpenWindow(4);
-
-                return;
-            }
-
-            int minutes = Mathf.FloorToInt(currentTime / 60);
-            int seconds = Mathf.FloorToInt(currentTime % 60);
-
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        }
-    }
-
-    private void UpdateScore()
-    {
-        score += Random.Range(2, 6);
-
-        scoreText.text = $"{score}";
-        finalScoreText.text = scoreText.text;
     }
 
     public void OpenWindow(int windowIndex)
@@ -83,13 +44,5 @@ public class UIManager : MonoBehaviour
         }
 
         _last.SetActive(true);
-        if(windowIndex == 3)
-        {
-            score = 0;
-            currentTime = initTime;
-
-            scoreText.text = $"{score}";
-            GameManager.Instance.StartGame();
-        }
     }
 }
