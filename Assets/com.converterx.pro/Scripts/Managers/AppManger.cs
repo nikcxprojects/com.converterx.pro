@@ -4,6 +4,9 @@ public class AppManger : MonoBehaviour
 {
     public static AppManger Instance { get => FindObjectOfType<AppManger>(); }
 
+    private const string languageSaveKey = "languageSaveKey";
+    [SerializeField] TranslateMe[] translateMes;
+
     public float GetResult(Format input, Format output, float value)
     {
         float result = 0;
@@ -34,5 +37,23 @@ public class AppManger : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void SetLanguage(int languageId)
+    {
+        PlayerPrefs.SetInt(languageSaveKey, languageId);
+        PlayerPrefs.Save();
+
+        FindObjectOfType<UIManager>().TranslateInputs();
+
+        foreach(TranslateMe translateMe in translateMes)
+        {
+            translateMe.Translate();
+        }
+    }
+
+    public int GetLanguage()
+    {
+        return PlayerPrefs.HasKey(languageSaveKey) ? PlayerPrefs.GetInt(languageSaveKey) : 0;
     }
 }

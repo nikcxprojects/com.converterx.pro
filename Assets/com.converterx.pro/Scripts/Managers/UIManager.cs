@@ -33,6 +33,17 @@ public class UIManager : MonoBehaviour
     {
         navigation.SetActive(false);
         OpenWindow(0);
+
+        TranslateInputs();
+    }
+
+    public void TranslateInputs()
+    {
+        inputCur.options[0].text = AppManger.Instance.GetLanguage() > 0 ? "Выберите валюту ввода" : "Choose input currency";
+        outputCur.options[0].text = AppManger.Instance.GetLanguage() > 0 ? "Выберите выходную валюту" : "Choose output currency";
+
+        inputCur.transform.GetChild(0).GetComponent<Text>().text = inputCur.options[inputCur.value].text;
+        outputCur.transform.GetChild(0).GetComponent<Text>().text = outputCur.options[outputCur.value].text;
     }
 
     public void OpenWindow(int windowIndex)
@@ -51,6 +62,12 @@ public class UIManager : MonoBehaviour
         }
 
         navigation.SetActive(windowIndex > 0);
+        if(windowIndex == 2)
+        {
+            inputCur.value = 0;
+            outputCur.value = 0;
+        }
+
         _last.SetActive(true);
     }
 
