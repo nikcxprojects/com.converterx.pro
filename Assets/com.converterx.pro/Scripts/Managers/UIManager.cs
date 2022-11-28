@@ -13,9 +13,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject menu;
     [SerializeField] GameObject converter;
 
+    [Space(10)]
+    [SerializeField] Text resultText;
+
     public static Action OnMousePressed { get; set; } = delegate { };
 
     private void Awake()
+    {
+        
+    }
+
+    private void Start()
     {
         navigation.SetActive(false);
         OpenWindow(0);
